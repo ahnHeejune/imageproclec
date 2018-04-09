@@ -13,13 +13,13 @@ visboundaries(mask,'Color','b');
 
 %Segment the image using the 'edge' method and 200 iterations.
 
-for n =1:20
+for n =1:200
     imshow(I);
     hold on;
-    mask = activecontour(I, mask,2, 'edge');
+    mask = activecontour(I, mask,2); % 'edge');
     %Display the final contour on the original image in red.
     visboundaries(mask,'Color','r'); 
     title('Initial contour (blue) and final contour (red)');
     %disp('next?');
-    pause(1);
+    pause(0.2);
 end
