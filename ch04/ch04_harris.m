@@ -45,15 +45,20 @@ bw=zeros(size(R)); bw([j,k])=1; bw=logical(bw);                 %Return logical 
 % compare with matlab function 
 %------------------------------------------------------------------------
 figure
-C = corner(I);
+%C = corner(I);
+C = detectHarrisFeatures(I);
 subplot(1,2,1);
 imshow(I);
 hold on;
-plot(C(:,1),C(:,2),'r*');
-C = corner(I, 20);  % with number inut 
+%plot(C(:,1),C(:,2),'r*');
+plot(C.Location(:,1),C.Location(:,2),'r*');
+
+%C = corner(I, 20);  % with given number of corner 
+C = detectHarrisFeatures(I, 'MinQuality', 0.1);
 subplot(1,2,2);
 imshow(I);
 hold on;
-plot(C(:,1),C(:,2),'r*');
+%plot(C(:,1),C(:,2),'r*');
+plot(C.Location(:,1),C.Location(:,2),'r*');
 
 
