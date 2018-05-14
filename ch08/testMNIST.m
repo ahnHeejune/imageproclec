@@ -6,8 +6,10 @@ test_size = size(test_set);
 num_correct = 0;
 for i=1:test_size(1)
     input_x = [1; test_set(i,:)'];
-    hidden_output = [1; sigmf(W1'*input_x, [beta 0])];
-    output = sigmf(W2'*hidden_output, [beta 0]);
+    hidden_output = [1; sigmf(W1'*input_x, [beta 0])];   % textbook eqn (8.4)
+    output = sigmf(W2'*hidden_output, [beta 0]);         % textbook eqn (8.5)
+    
+    % decision for class
     [max_unit, max_idx] = max(output);
     if(max_idx == test_label(i)+1)
         num_correct = num_correct + 1;

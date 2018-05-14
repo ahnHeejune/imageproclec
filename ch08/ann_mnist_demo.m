@@ -20,6 +20,19 @@ train_label = loadMNISTLabels('train-labels.idx1-ubyte');
 test_set = loadMNISTImages('t10k-images.idx3-ubyte')';
 test_label = loadMNISTLabels('t10k-labels.idx1-ubyte');
 
+
+% show 
+
+figure                                          % initialize figure
+colormap(gray)                                  % set to grayscale
+for i = 1:36                                    % preview first 36 samples
+    subplot(6,6,i)                              % plot them in 6 x 6 grid
+    digit = reshape(train_set(i, :), [28,28]);     % row = 28 x 28 image
+    imagesc(digit);                              % show the image
+    axis off;
+    title(num2str(train_label(i)))                   % show the label
+end
+
 % 2. parameter setting
 
 global W1 W2;
