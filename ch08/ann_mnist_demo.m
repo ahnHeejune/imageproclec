@@ -20,9 +20,6 @@ train_label = loadMNISTLabels('train-labels.idx1-ubyte');
 test_set = loadMNISTImages('t10k-images.idx3-ubyte')';
 test_label = loadMNISTLabels('t10k-labels.idx1-ubyte');
 
-
-% show 
-
 figure                                          % initialize figure
 colormap(gray)                                  % set to grayscale
 for i = 1:36                                    % preview first 36 samples
@@ -66,6 +63,20 @@ for i=1:max_iter
 end
 
 % 4. verifiying 
-acc = testMNIST(test_set, test_label)
+[acc, decisions, probs] = testMNIST(test_set, test_label)
 disp(['final accuracy:',num2str(acc)]);    
+
+% 5. visualize only for some of tem
+
+for k = 1:16
+    subplot(1,2,1);                              % plot them in 6 x 6 grid
+    digit = reshape(test_set(k, :), [28,28]);     % row = 28 x 28 image
+    imagesc(digit);                              % show the image
+    axis off;
+    title(sprintf('Real:%d, Estimated:%d', test_set(k), decisions(k)));
+    subplot(1,2,2);
+    bar(0:9, probs(k,:)); 
+    title('nn output');
+    pause;
+end
 
