@@ -1,7 +1,7 @@
 function trainMNIST(train_set, train_label)   
 
 global W1 W2 alpha beta;
-K = 10;
+K = size(W2,2);
 Y = eye(K); % output vector 
 N = size(train_set, 1);
 for j=1:N

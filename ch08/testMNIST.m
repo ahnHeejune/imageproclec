@@ -1,12 +1,13 @@
 function [accuracy, decisions, probs] = testMNIST(test_set, test_label)
 
-global W1 W2 alpha beta;
+global W1 W2 alpha beta ;
 
 test_size = size(test_set);
 numSamples = test_size(1);
 
 decisions = -1*ones(numSamples,1);
-probs = zeros(numSamples,10);  % 10 is hardcoded
+K = size(W2,2);
+probs = zeros(numSamples,K);  
 
 num_correct = 0;
 for i=1:test_size(1)
